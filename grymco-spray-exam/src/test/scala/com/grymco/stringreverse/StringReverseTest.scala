@@ -49,7 +49,7 @@ class StringReverseTest extends Specification with Specs2RouteTest with ReverseS
 
 
     "reject the request with a wrong route" in {
-      Get("/") ~> sealRoute(reverseRoute) ~> check {
+      Get("/fgsdf") ~> sealRoute(reverseRoute) ~> check {
         status === NotFound
         responseAs[String] === "The requested resource could not be found."
       }
