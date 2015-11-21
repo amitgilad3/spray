@@ -26,7 +26,7 @@ class StringReverseTest extends Specification with Specs2RouteTest with ReverseS
 
     //Sealing Routes -  translates Rejections to HTTP
     //I Can also add testing for other methods that are not get bet in any case of method that is not get the respone will be HTTP method not allowed, supported methods: GET
-    "return a MethodNotAllowed error for PUT requests to the root path" in {
+    "return a MethodNotAllowed error for PUT requests to the reversestring path" in {
       Put() ~> sealRoute(reverseRoute) ~> check {
         status === MethodNotAllowed
         responseAs[String] === "HTTP method not allowed, supported methods: GET"
