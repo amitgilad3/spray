@@ -8,10 +8,11 @@ import spray.routing.HttpService
  */
 class StringServiceActor extends Actor with HttpService{
    val myRoute =
-    parameters("string".asInstanceOf[String]) { (string) =>
-
-      complete(s"${string.reverse}")
-    }
+   path("reversestring") {
+     parameters("string".asInstanceOf[String]) { (string) =>
+       complete(s"${string.reverse}")
+     }
+   }
    def receive: Receive = runRoute(myRoute)
 
   def actorRefFactory = context
