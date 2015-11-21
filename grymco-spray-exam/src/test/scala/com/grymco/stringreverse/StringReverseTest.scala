@@ -35,14 +35,24 @@ class StringReverseTest extends Specification with Specs2RouteTest with ReverseS
 
     //missing query params
     "reject the request with a Missing Query Param Rejection if a required parameters is missing(in this case the param string is missing)" in {
-      Get("/reversestring?strisssng=grymco") ~> reverseRoute ~> check { rejection === MissingQueryParamRejection("string") }
+      Get("/reversestring?strisssng=grymco") ~> reverseRoute ~> check {
+        rejection === MissingQueryParamRejection("string")
+      }
+    }
+
+    //extra  query params
+    "let requests pass that contain the required parameter with its required value" in {
+      Get("/reversestring?string=grymco&amit=sdasd") ~> reverseRoute ~> check {
+        status === OK
+      }
     }
 
 
-
-
-
-
-
+    "reject the request with a wrong route" in {
+      Get("/") ~> sealRoute(reverseRoute) ~> check {
+        status === NotFound
+        responseAs[String] === "The requested resource could not be found."
+      }
+    }
   }
 }
