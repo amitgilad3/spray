@@ -1,6 +1,9 @@
+
 name := "grymco-spray-exam"
 
 version := "1.0"
+
+
 
 scalaVersion := "2.11.7"
 libraryDependencies ++= {
@@ -17,3 +20,10 @@ libraryDependencies ++= {
     "ch.qos.logback" % "logback-classic" % "1.1.3"
   )
 }
+lazy val root = (project in file(".")).
+  settings(
+    name := "spray-grymco",
+    version := "1.0",
+    scalaVersion := "2.11.7",
+    mainClass in Compile := Some("com.grymco.stringreverse.main.Boot")
+  )
